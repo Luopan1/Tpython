@@ -1,0 +1,11 @@
+#coding=utf-8
+A=[11,12,23]
+B=A
+print(id(A))
+print(id(B))
+B.append(44)
+print("*"*50)
+print(A)
+print(B)
+print(id(A))
+print(id(A))

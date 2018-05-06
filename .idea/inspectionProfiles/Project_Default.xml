@@ -6,6 +6,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="day01_01.test01.*" />
+          <option value="play_flying.day_01.*" />
         </list>
       </option>
     </inspection_tool>

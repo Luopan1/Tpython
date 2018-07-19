@@ -4,7 +4,6 @@ import os
 import time
 import random
 
-
 def worker(msg):
     t_start = time.time()
     time.sleep(random.random() * 2)

@@ -7,6 +7,7 @@
         <list>
           <option value="day01_01.test01.*" />
           <option value="play_flying.day_01.*" />
+          <option value="urllib.urlopen" />
         </list>
       </option>
     </inspection_tool>

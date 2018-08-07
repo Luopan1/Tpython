@@ -1,7 +1,10 @@
 # coding=utf-8
 import socket
 from multiprocessing import Process
-import re
+import re, sys
+
+
+WSGI_PYTHON_DIR = "../html"
 
 
 class HTTPServer(object):
@@ -31,8 +34,8 @@ class HTTPServer(object):
             "METHOD": method
         }
         print(fileName)
-        responseBody =self.application(env,self.start_responce)
-        responce = self.headerLines+"\r\n" + responseBody
+        responseBody = self.application(env, self.start_responce)
+        responce = self.headerLines + "\r\n" + responseBody
         newClicent.send(responce.encode("utf-8"))
         newClicent.close()
 
@@ -42,9 +45,15 @@ class HTTPServer(object):
             headerLines += "%s:%s\r\n" % head
         self.headerLines = headerLines
 
-
 def main():
-    httpServer = HTTPServer()
+    if len(sys.argv) < 2:
+        sys.exit("python MyWebServer.py Module:app")
+    sys.path.insert(1, WSGI_PYTHON_DIR)
+    print(sys.argv)
+    module, appName = sys.argv[1].split(":")
+    m = __import__(module)
+    app = getattr(m, appName)
+    httpServer = HTTPServer(app)
     httpServer.bind(7788)
     httpServer.start()
 

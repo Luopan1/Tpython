@@ -1,7 +1,7 @@
 # coding=utf-8
 import time
 
-from Tpython3.T_day04.通用web服务器框架.MyWebServerceFrameWork import HTTPServer
+HTML_ROOT_DIR = "../html"
 
 
 class Application(object):
@@ -10,6 +10,23 @@ class Application(object):
 
     def __call__(self, env, start_response):
         path = env.get("PATH_INFO", "/")
+        if path.startswith("/static"):
+            try:
+                fileName = path[7:]
+                f = open(HTML_ROOT_DIR + fileName, "rb")
+
+                status = "200 ok"
+                content = f.read()
+                f.close()
+                heades = []
+                start_response(status, heades)
+                return content.decode("utf-8")
+            except:
+                status = "404 Not Found"
+                heades = []
+                start_response(status, heades)
+                return "Not Found"
+
         for urls, handler in self.urls:
             if path == urls:
                 return handler(env, start_response)
@@ -28,14 +45,21 @@ def showTime(env, start_responce):
     return time.ctime()
 
 
+urls = [
+    ("/", showTime)
+]
+app = Application(urls)
+
+
 def main():
-    urls = [
-        ("/", showTime)
-    ]
-    app = Application(urls)
-    httpServer = HTTPServer(app)
-    httpServer.bind(7788)
-    httpServer.start()
+    pass
+    # urls = [
+    #     ("/", showTime)
+    # ]
+    # app = Application(urls)
+    # httpServer = HTTPServer(app)
+    # httpServer.bind(7788)
+    # httpServer.start()
 
 
 if __name__ == '__main__':

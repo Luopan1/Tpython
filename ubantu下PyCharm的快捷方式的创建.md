@@ -57,3 +57,7 @@ StartupWMClass=jetbrains-pycharm    </br  >
     flush privileges;</br>
  ###### 5.重启MySQL服务 ###### 
     service mysql restart <br>
+    
+ **navicat配置：**  
+ ![xxxx](Tpython3/11.png)
+    

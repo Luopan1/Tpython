@@ -57,7 +57,8 @@ StartupWMClass=jetbrains-pycharm    </br  >
     flush privileges;</br>
  ###### 5.重启MySQL服务 ###### 
     service mysql restart <br>
-    
+ ###### 6.修改MySQL密码 ######
+    SET PASSWORD FOR 'root'@'localhost' = PASSWORD('newpass')
  **navicat配置：**  
  ![xxxx](Tpython3/11.png)
     

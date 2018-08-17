@@ -3,7 +3,6 @@ import socket
 from multiprocessing import Process
 import re, sys
 
-
 WSGI_PYTHON_DIR = "../html"
 
 
@@ -27,13 +26,16 @@ class HTTPServer(object):
     def handlerClient(self, newClicent):
         content = newClicent.recv(2048)
         request_line = content.splitlines()
+        #  GET / HTTP/1.1
+        #  GET /favicon.ico HTTP/1.1
         fileName = re.match(r"\w+ +(/[^ ]*) ", request_line[0].decode("utf-8")).group(1)
         method = re.match(r"(\w+) +/[^ ]* ", request_line[0].decode("utf-8")).group(1)
         env = {
             "PATH_INFO": fileName,
             "METHOD": method
         }
-        print(fileName)
+        print("请求路径",fileName)
+        print("请求方式",method)
         responseBody = self.application(env, self.start_responce)
         responce = self.headerLines + "\r\n" + responseBody
         newClicent.send(responce.encode("utf-8"))
@@ -44,6 +46,7 @@ class HTTPServer(object):
         for head in heads:
             headerLines += "%s:%s\r\n" % head
         self.headerLines = headerLines
+
 
 def main():
     if len(sys.argv) < 2:

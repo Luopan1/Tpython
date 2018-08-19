@@ -41,22 +41,22 @@ StartupWMClass=jetbrains-pycharm    </br  >
 
 #### Ubantu下搭建MySQL服务 ####
 ###### 1.执行安装命令 ######
-    sudo apt-get install mysql-server </br  >
-    sudo apt isntall mysql-client   </br  >
-    sudo apt install libmysqlclient-dev  </br  >
+    sudo apt-get install mysql-server 
+    sudo apt isntall mysql-client  
+    sudo apt install libmysqlclient-dev  
 
 ###### 2.测试是否安装成功 ######
-    sudo netstat -tap | grep mysql </br>
+    sudo netstat -tap | grep mysql 
 ###### 3.进入MySQL ###### 
     mysql -uroot -p</br>
 ###### 4.配置远程可访问 ###### 
-    sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf </br>
-    注释掉bind-address = 127.0.0.1 </br>
-    保存退出，然后进入mysql服务，执行授权命令：</br>
-    grant all on *.* to root@'%' identified by '你的密码' with grant option;</br>
-    flush privileges;</br>
+    sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf 
+    注释掉bind-address = 127.0.0.1 
+    保存退出，然后进入mysql服务，执行授权命令：
+    grant all on *.* to root@'%' identified by '你的密码' with grant option;
+    flush privileges;
  ###### 5.重启MySQL服务 ###### 
-    service mysql restart <br>
+    service mysql restart 
  ###### 6.修改MySQL密码 ######
     SET PASSWORD FOR 'root'@'localhost' = PASSWORD('newpass')
  **navicat配置：**  

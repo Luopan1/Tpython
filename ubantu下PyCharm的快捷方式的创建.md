@@ -27,7 +27,7 @@ StartupWMClass=jetbrains-pycharm    </br  >
     "password":"barfoo!",   </br   >
     "timeout":600,   </br   >
     "method":"table"  </br   >
-}
+}</br   >
 // server          服务器 IP (IPv4/IPv6)，注意这// 也将是服务端监听的 IP 地址  </br   >
 // server_port     服务器端口  </br   >
 // local_port      本地端端口  </br   >

@@ -9,7 +9,7 @@ try:
         print("ID: " + str(d[0]) + '  用户名： ' + str(d[1]) + "  年级： " + str(d[2]))
 
     insertSQL = "insert into students(name,age) values(%s,%s)"
-    parames=("小六六",28)
+    parames=["小六六",28]
     print(dbHelper.insert(insertSQL, parames))
 except Exception as e:
     print(e)
